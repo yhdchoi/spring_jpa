@@ -11,7 +11,7 @@ import java.util.List;
 public record UserRecord(String username, String password,
                          String firstName, String lastName,
                          String email, String phone,
-                         List<String> stacks) {
+                         List<String> stackIdList) {
 
     public UserRecord(@NotBlank @Size(min = 8, max = 20) String username,
                       @NotBlank @Size(min = 8, max = 20)String password,
@@ -19,7 +19,7 @@ public record UserRecord(String username, String password,
                       @NotBlank @Size(min = 2, max = 30)String lastName,
                       @NotNull @Email String email,
                       String phone,
-                      List<String> stacks) {
+                      List<String> stackIdList) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -28,6 +28,6 @@ public record UserRecord(String username, String password,
         this.phone = phone;
 
         // 불변성 보장
-        this.stacks = Collections.unmodifiableList(stacks);
+        this.stackIdList = Collections.unmodifiableList(stackIdList);
     }
 }

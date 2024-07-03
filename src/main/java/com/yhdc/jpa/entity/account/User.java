@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -41,11 +41,11 @@ public class User extends EntityDateAudit {
     @Column(length = 100)
     private String phone;
 
-    // User stacks
+    // User stackIdList
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "user_stack"
             , joinColumns = @JoinColumn(name = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "stack_id"))
-    private Set<Stack> stackSet;
+    private List<Stack> stackList;
 
 }
