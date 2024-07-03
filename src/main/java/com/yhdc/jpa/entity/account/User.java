@@ -1,13 +1,11 @@
 package com.yhdc.jpa.entity.account;
 
 import com.yhdc.jpa.entity.common.EntityDateAudit;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Builder
@@ -43,5 +41,11 @@ public class User extends EntityDateAudit {
     @Column(length = 100)
     private String phone;
 
-    private String stacks;
+    // User stacks
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(name = "user_stack"
+            , joinColumns = @JoinColumn(name = "user_id")
+            , inverseJoinColumns = @JoinColumn(name = "stack_id"))
+    private Set<Stack> stackSet;
+
 }
