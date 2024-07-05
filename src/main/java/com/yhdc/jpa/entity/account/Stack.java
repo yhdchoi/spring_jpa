@@ -1,5 +1,6 @@
 package com.yhdc.jpa.entity.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yhdc.jpa.entity.common.EntityDateAudit;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,12 +24,17 @@ public class Stack extends EntityDateAudit {
     @Column(name = "id", columnDefinition = "BINARY(16)", updatable = false, nullable = false, unique = true)
     private UUID id;
 
-    // User
-    @ManyToMany(mappedBy = "stackSet", fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    // Users
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(name = "user_stack"
+            , joinColumns = @JoinColumn(name = "stack_id")
+            , inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> userSet;
 
     // Stack name
-    private String stack;
+    private String name;
 
     // Skill level
     private String level;

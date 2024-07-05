@@ -4,12 +4,13 @@ import com.yhdc.jpa.dto.account.UserDto;
 import com.yhdc.jpa.entity.account.Stack;
 import com.yhdc.jpa.entity.account.User;
 import com.yhdc.jpa.record.account.UserRecord;
+import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Component
 public class MappingServiceUtil {
-
 
     public User UserRecordToUser(UserRecord userRecord) {
 
@@ -37,10 +38,10 @@ public class MappingServiceUtil {
         userDto.setUpdated(user.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         // Stack collection
-        if (user.getStackSet() == null || user.getStackSet().isEmpty()) {
+        if (user.getStackList() == null || user.getStackList().isEmpty()) {
             userDto.setStacks(List.of("Empty"));
         } else {
-            List<String> stackList = user.getStackSet().stream().map(Stack::getStack).toList();
+            List<String> stackList = user.getStackList().stream().map(Stack::getName).toList();
             userDto.setStacks(stackList);
         }
 

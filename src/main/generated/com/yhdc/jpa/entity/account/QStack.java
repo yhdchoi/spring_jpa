@@ -18,7 +18,7 @@ public class QStack extends EntityPathBase<Stack> {
 
     private static final long serialVersionUID = -1194305726L;
 
-    public static final QStack stack1 = new QStack("stack1");
+    public static final QStack stack = new QStack("stack");
 
     public final com.yhdc.jpa.entity.common.QEntityDateAudit _super = new com.yhdc.jpa.entity.common.QEntityDateAudit(this);
 
@@ -29,7 +29,7 @@ public class QStack extends EntityPathBase<Stack> {
 
     public final StringPath level = createString("level");
 
-    public final StringPath stack = createString("stack");
+    public final StringPath name = createString("name");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;

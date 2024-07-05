@@ -37,7 +37,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath phone = createString("phone");
 
-    public final SetPath<Stack, QStack> stackSet = this.<Stack, QStack>createSet("stackSet", Stack.class, QStack.class, PathInits.DIRECT2);
+    public final ListPath<Stack, QStack> stackList = this.<Stack, QStack>createList("stackList", Stack.class, QStack.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
