@@ -11,13 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 public class UserDto {
 
+    private String userId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
-    private List<String> stacks;
+    private List<StackDto> stacks;
     private String created;
     private String updated;
 

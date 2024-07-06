@@ -57,7 +57,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<?> searchUser(String keyword) {
         List<User> searchedUser = userRepository.searchUser(keyword);
-        return new ResponseEntity<>(searchedUser, HttpStatus.OK);
+
+        List<UserDto> userDtoList = new ArrayList<>();
+        if (!searchedUser.isEmpty()) {
+            searchedUser.forEach(user -> {
+                userDtoList.add(mappingServiceUtil.UserToUserDto(user));
+            });
+        }
+
+        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.yhdc.jpa.entity.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yhdc.jpa.entity.common.EntityDateAudit;
 import jakarta.persistence.*;
 import lombok.*;

@@ -23,9 +23,12 @@ public class UserDslRepositoryImpl implements UserDslRepository {
     public List<User> searchUser(String keyword) {
         List<User> searchedUser = jpaQueryFactory
                 .selectFrom(user)
-                .where(user.username.contains(keyword),
-                        searchStackList(keyword))
-                .fetch().stream().toList();
+                .where(user.username.contains(keyword)
+                        .or(user.firstName.contains(keyword))
+                        .or(user.lastName.contains(keyword))
+                        .or(user.email.contains(keyword))
+                        .or(user.phone.contains(keyword)))
+                .fetch();
 
         return searchedUser;
     }
@@ -46,6 +49,5 @@ public class UserDslRepositoryImpl implements UserDslRepository {
                 .or(user.email.contains(keyword))
                 .or(user.phone.contains(keyword));
     }
-
 
 }
